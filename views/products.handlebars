@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/products.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="head_titles disp_flex">
+        <a href="/products?stock">Mostrar solo productos con stock</a>
+        <a href="/products">Mostrar todos los productos</a>
+        <a href="/products?descending">Ordenar por mayor precio</a>
+        <a href="/products?ascending">Ordenar por menor precio</a>
+        <a href="/chat">Chat</a>
+        <a href="/products/new">Acceso admin</a>
+    </div>
+    <div class="cards_container">
+        {{#each products }}    
+        <div class="card">
+            <div class="card_content">
+                <p class="card_title">{{this.title}}</p>
+                <img src="images/products/{{this.photo}}" class="card_img" alt="{{this.title}}">
+                <p class="card_precio">$ {{this.price}}.-</p>
+                <p class="card_ver_detalles"><a href="/products/{{this._id}}">Ver detalles</a></p>
+            </div>
+        </div>   
+        {{/each}} 
+    </div>
+</body>
+</html>

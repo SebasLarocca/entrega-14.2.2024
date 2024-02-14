@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/detail_product.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="head_titles disp_flex">
+        
+    </div>
+    <center>
+        <div class="card_detail">
+            <img src="/images/products/{{photo}}" class="card_img" alt="Italian Trulli">
+            <div class="card_content">
+                <p>{{title}}</p>
+                {{#if isStock}}
+                <p class="card_precio">$ {{price}}.-</p>
+                {{else}}
+                <p>No hay stock del producto</p>
+                {{/if}}
+                <p class="card_descripcion">{{description}}</p>
+                <a class="volver_al_listado" href="/products">Volver al listado</a>
+            </div>
+        </div>
+    </center>
+</body>
+</html>

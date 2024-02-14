@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/products.css">
+    <title>Document</title>
+</head>
+<body>
+    <a href="/products"><p class="link_volver">Volver a home</p></a>
+    <div class="head_titles disp_flex">
+    </div>
+    <div class="cards_container">
+        {{#each products }}    
+        <div class="card">
+            <div class="card_content">
+                <p class="card_title">{{this.title}}</p>
+                <img src="/images/products/{{this.photo}}" class="card_img" alt="{{this.title}}">
+                <p class="card_precio">$ {{this.price}}.-</p>
+                <form  method="post" action="/products/{{this._id}}">
+                    <button class="boton_eliminar" type="submit">Eliminar</button>
+                </form>
+            </div>
+        </div>   
+        {{/each}} 
+    </div>
+</body>
+</html>

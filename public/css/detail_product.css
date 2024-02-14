@@ -1,0 +1,78 @@
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: Roboto_regular;
+    src: url('./fonts/roboto/Roboto-Regular.ttf');
+}
+
+@font-face {
+    font-family: Roboto_light;
+    src: url('./fonts/roboto/Roboto-Light.ttf');
+}
+
+body {
+    background-color: #75745F;
+    /* font-family: Roboto_regular; */
+    font-family: Roboto_light;
+    color: white;
+}
+
+.head_titles {
+    width: 90%;
+    margin: 20px;
+}
+
+a{
+    text-decoration: none;
+}
+
+.volver_al_listado {
+    margin-top: 70px;
+}
+a:visited {
+    color: white;
+}
+
+.disp_flex {
+    display: flex;
+    justify-content: space-around;
+}
+
+.card_img {
+    width: 380px;
+    height: 380px;
+    margin-top: 40px;
+    margin-left: 40px;
+}
+
+.card_detail {
+    width: 883px;
+    height: 480px;
+    background-color: #413D4A;
+    display: flex;
+}
+
+.card_precio {
+    margin-top: 25px;
+}
+
+.card_descripcion{
+    margin-top: 40px;
+    text-align: left;
+}
+.card_ver_detalles {
+    margin-top: 50px;
+}
+
+.card_content {
+margin-top: 40px;
+margin-left: 40px;
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+width: 50%;
+}

@@ -1,0 +1,15 @@
+
+- OK Funcionalidad de Modificar productos
+- OK Funcionalidad Borrar productos
+
+- Manejo de errores. Que pasa si MongoDB falla?
+- Checkeo de parámetros obligatorios en "Añadir producto" con correspondiente retorno de error al usuario que completo el formulario
+- Carrousel de imagenes. Que pasa si quiero agregar varias imagenes por producto?
+
+- Mejorar de UX del sitio
+- Diseño de la página usando CSS
+- Mover Añadir productos a un panel interno de administración
+- Agregar mas información (precio e imagen) y filtros (ordenar por precio menor/mayor) en el listado de productos
+
+Nice to have
+- Vistas para modificar y borrar productos

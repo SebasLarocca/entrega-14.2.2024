@@ -1,0 +1,92 @@
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: Roboto_regular;
+    src: url('./fonts/roboto/Roboto-Regular.ttf');
+}
+
+@font-face {
+    font-family: Roboto_light;
+    src: url('./fonts/roboto/Roboto-Light.ttf');
+}
+
+@font-face {
+    font-family: Roboto_bold;
+    src: url('./fonts/roboto/Roboto-Bold.ttf');
+}
+
+body {
+    background-color: #75745F;
+    font-family: Roboto_light;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:visited {color: white}
+
+.head_titles {
+    width: 90%;
+    margin: 20px;
+}
+
+.disp_flex {
+    display: flex;
+    justify-content: space-around;
+}
+
+.cards_container {
+    display: flex;
+    width: 90%;
+    margin: 3%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: start;
+}
+
+.card_img {
+    width: 216px;
+    height: 216px;
+    margin-top: 15px;
+}
+
+.card {
+    margin: 10px;
+    width: 250px;
+    height: 408px;
+    background-color: #413D4A;
+}
+
+.card_title {
+    font-family: Roboto_bold;
+}
+.card_precio {
+    margin-top: 15px;
+}
+
+.card_ver_detalles {
+    margin-top: 15px;
+}
+
+.card_content {
+    margin: 15px 0px 0px 15px;
+}
+
+.link_volver {
+    padding-top: 40px;
+    margin-left: 50px;
+}
+
+.boton_eliminar{
+    background-color: #413D4A ;
+    color: white;
+    font-family: Roboto_light;
+    border: none;
+    margin-top: 40px;
+}

@@ -1,0 +1,38 @@
+{{!-- <form action="/products" method="post" enctype="multipart/form-data">
+    <input type="text" name="title" placeholder="Titulo del producto">
+    <textarea name="description" placeholder="Descripcion del producto"></textarea>
+    <input type="text" name="price" placeholder="Precio del producto">
+    <input type="text" name="stock" placeholder="Stock del producto">
+    <input type="file" name="image">
+    <input type="submit" value="Crear producto">
+</form> --}}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/new-product.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="disp_flex">
+    <form action="/products" method="post" class="form" enctype="multipart/form-data">
+        <p >Cargar un nuevo producto</p>
+        <input type="text" class="input_title" name="title" placeholder="Titulo del producto">
+        <textarea name="description" placeholder="Descripcion del producto"></textarea>
+        <input type="text" class="input_price" name="price" placeholder="Precio del producto">
+        <input type="text" class="input_stock" name="stock" placeholder="Stock del producto">
+        <input type="file" name="image" id="files" style="display:none;" multiple>
+        <label for="files">Seleccionar fotos</label>
+        <input type="submit" value="Crear producto">
+    </form>
+    <div class="opciones_admin">
+        <a href="/products/admin">Borrar productos</a>
+    </div>
+    </div>
+</body>
+</html>

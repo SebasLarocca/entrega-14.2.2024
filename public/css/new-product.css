@@ -1,0 +1,169 @@
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: Roboto_regular;
+    src: url('./fonts/roboto/Roboto-Regular.ttf');
+}
+
+@font-face {
+    font-family: Roboto_light;
+    src: url('./fonts/roboto/Roboto-Light.ttf');
+}
+
+@font-face {
+    font-family: Roboto_black;
+    src: url('./fonts/roboto/Roboto-Black.ttf');
+}
+
+body {
+    background-color: #75745F;
+    /* font-family: Roboto_regular; */
+    font-family: Roboto_light;
+    color: white;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-top: 50px;
+    margin-left: 0px;
+}
+
+input {
+    border: none;
+    background-color: #75745F;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #413D4A;
+}
+
+textarea {
+    background-color: #75745F;
+    border-bottom: 1px solid #413D4A;
+    margin-bottom: 20px;
+    color: white;
+    font-family: Roboto_regular;
+}
+
+input[type=submit] {
+    background-color: #413D4A;
+    border: none;
+    color: #75745F;
+    padding: 15px 30px;
+    text-decoration: none;
+    margin-top: 20px;
+  }
+
+  input::file-selector-button {
+    font-weight: bold;
+    color: #75745F;
+    background-color: #413D4A;
+    padding: 0.5em;
+    border: none;
+    
+  }
+
+::placeholder {
+    color: #413D4A;
+    font-family: Roboto_light;
+  }
+
+
+
+.head_titles {
+    width: 90%;
+    margin: 20px;
+}
+a:visited {
+    color: white;
+}
+
+input:focus {
+    outline: none;
+  }
+textarea:focus {
+    outline: none;
+}
+
+.disp_flex {
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.card_img {
+    width: 380px;
+    height: 380px;
+    margin-top: 40px;
+    margin-left: 40px;
+}
+
+.card_detail {
+    width: 883px;
+    height: 480px;
+    background-color: #413D4A;
+    display: flex;
+}
+
+.card_precio {
+    margin-top: 25px;
+}
+
+.card_descripcion{
+    margin-top: 40px;
+    text-align: left;
+}
+.card_ver_detalles {
+    margin-top: 50px;
+}
+
+.card_content {
+margin-top: 40px;
+margin-left: 40px;
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+width: 50%;
+}
+
+.bold_title {
+    font-family: Roboto_black;
+    font-size: 20px;
+    color: #413D4A;
+}
+
+.input_title{
+    margin-top: 40px;
+    color: white;
+    font-family: Roboto_regular;
+}
+
+.input_price{
+    color: white;
+    font-family: Roboto_regular;
+}
+.input_stock{
+    color: white;
+    font-family: Roboto_regular;
+}
+
+a{
+    text-decoration: none;
+    padding-left: 30px;
+}
+.opciones_admin {
+    margin-top: 50px;
+    display: flex;
+}
+
+label{
+    font-size: 15px;
+    color: #413D4A;
+    border: solid 1px #413D4A;
+    width: fit-content;
+    padding: 10px;
+}
