@@ -33,7 +33,7 @@ app.get("/", (req, res) => {
     res.redirect('/products')
 })
 
-app.get('/cart/', cartRouter)
+app.use('/cart/', cartRouter)
 app.use('/products', prodsRouter)
 app.get('/chat/', chatRouter)
 
@@ -63,4 +63,4 @@ io.on('connection', (socket) => {
 //conexión a mongo db
 //acpa define: usuario (sebastianlarocca), pass (RockyBalboa27) y base de datos (ecommerce)
 //en el schema se define la colección a la que apunta.
-mongoose.connect('mongodb+srv://sebastianlarocca:<mypass>@cluster0.xbrgkcu.mongodb.net/ecommerce?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://sebastianlarocca:RockyBalboa27@cluster0.xbrgkcu.mongodb.net/ecommerce?retryWrites=true&w=majority')

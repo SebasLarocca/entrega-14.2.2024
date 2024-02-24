@@ -1,26 +1,8 @@
 import { Router } from "express";
 import ProductsDAO from "../daos/mongo.dao/products.dao.js"
-
-import CartsDao from "../daos/mongo.dao/cart.dao.js";
 import upload from "../utils/upload.middleware.js";
 
 const router = Router();
-
-router.get('/cart', (req, res)=>{
-    CartsDao.createCart()
-    res.send('ok')
-})
-
-router.get('/carts', async (req, res)=>{
-    let carts = await CartsDao.getCarts()
-    console.log(JSON.stringify(carts, null, '\t'));
-    res.send(carts[0].products)
-})
-
-router.get('/cartaddprod', (req, res)=>{
-    CartsDao.addProduct()
-    res.send('agregado')
-})
 
 router.get('/', async (req, res) => {
     let withStock = req.query.stock;
@@ -30,17 +12,56 @@ router.get('/', async (req, res) => {
     if (withStock != undefined) {
         products = await ProductsDAO.getAllWithStock()
     } else if (ascending != undefined) {
-        products = await ProductsDAO.getAllAscending()
+        let page = parseInt(req.query.page)
+        let limit = parseInt(req.query.limit)
+        let filter = req.query.filter
+        if(!filter) filter =null        
+        if(!limit) limit=10
+        if(!page) page=1
+        products = await ProductsDAO.getAllAscending(page, limit, filter)
+        products.prevLink = products.hasPrevPage ? `http://localhost:8080/products?page=${products.prevPage}`:''
+        products.nextLink = products.hasNextPage ? `http://localhost:8080/products?page=${products.nextPage}`:''
+        products.isValid = !(page<=0 || page>products.totalPages) 
     } else if (descending != undefined) {
-        products = await ProductsDAO.getAllDescending()
+        let page = parseInt(req.query.page)
+        let limit = parseInt(req.query.limit)
+        let filter = req.query.filter
+        if(!filter) filter =null
+        if(!limit) limit=10
+        if(!page) page=1
+        products = await ProductsDAO.getAllDescending(page, limit, filter)
+        products.prevLink = products.hasPrevPage ? `http://localhost:8080/products?page=${products.prevPage}`:''
+        products.nextLink = products.hasNextPage ? `http://localhost:8080/products?page=${products.nextPage}`:''
+        products.isValid = !(page<=0 || page>products.totalPages) 
     } else {
         let page = parseInt(req.query.page)
+        let limit = parseInt(req.query.limit)
+        let filter = req.params.filter
+        if(!filter) filter =null
+        console.log(filter)
+        if(!limit) limit=10
         if(!page) page=1
-        products = await ProductsDAO.getAll(page);
+        products = await ProductsDAO.getAll(page, limit, filter);
         products.prevLink = products.hasPrevPage ? `http://localhost:8080/products?page=${products.prevPage}`:''
         products.nextLink = products.hasNextPage ? `http://localhost:8080/products?page=${products.nextPage}`:''
         products.isValid = !(page<=0 || page>products.totalPages)        
     }
+    let object = {
+        status: res.status,
+        payload: products.docs,
+        totalPages:products.totalPages,
+        prevPage:products.prevPage,
+        nextPage: products.nextPage,
+        page: products.page,
+        hasPrevPage:products.hasPrevPage,
+        hasNextPage:products.hasNextPage,
+        prevLink: products.prevLink,
+        nextLink:products.nextLink 
+    }
+
+    console.log(
+        object
+    )
     res.render('products', {products} )
 })
 

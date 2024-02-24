@@ -2,20 +2,21 @@ import Products from '../../schemas/products.schema.js';
 
 class ProductsDAO {
 
-    static async getAll(page) {
-        return Products.paginate({}, {page, limit:5, lean: true});
+    static async getAll(page, limit, filter) {
+        let parsedFilter = await JSON.parse(filter)
+        return Products.paginate(parsedFilter, {page, limit, lean: true});
     }
 
     static async getAllWithStock() {
         return Products.paginate({stock: {$gt:0}}, {page:1, limit:5, lean: true})
     }
 
-    static async getAllAscending() {
-        return Products.paginate({}, {page:1, limit:5, lean: true, sort: {price: 1}})
+    static async getAllAscending(page, limit, filter) {
+        return Products.paginate({filter}, {page, limit, lean: true, sort: {price: 1}})
     }
 
-    static async getAllDescending() {
-        return Products.paginate({}, {page:1, limit:5, lean: true, sort: {price: -1}})
+    static async getAllDescending(page, limit, filter) {
+        return Products.paginate({filter}, {page, limit, lean: true, sort: {price: -1}})
     }
 
     static async getById(id) {
