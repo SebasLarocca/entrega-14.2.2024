@@ -2,20 +2,20 @@ import Products from '../../schemas/products.schema.js';
 
 class ProductsDAO {
 
-    static async getAll() {
-        return Products.find().lean();
+    static async getAll(page) {
+        return Products.paginate({}, {page, limit:5, lean: true});
     }
 
     static async getAllWithStock() {
-        return Products.find({stock: {$gt:0}}).lean()
+        return Products.paginate({stock: {$gt:0}}, {page:1, limit:5, lean: true})
     }
 
     static async getAllAscending() {
-        return Products.find().sort({price: 1}).lean()
+        return Products.paginate({}, {page:1, limit:5, lean: true, sort: {price: 1}})
     }
 
     static async getAllDescending() {
-        return Products.find().sort({price: -1}).lean()
+        return Products.paginate({}, {page:1, limit:5, lean: true, sort: {price: -1}})
     }
 
     static async getById(id) {

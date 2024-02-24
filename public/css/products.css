@@ -90,3 +90,12 @@ a:visited {color: white}
     border: none;
     margin-top: 40px;
 }
+
+.pagina_anterior {
+    margin-right: 15px;
+    
+}
+
+.pagina_siguiente {
+    margin-left: 15px;
+}

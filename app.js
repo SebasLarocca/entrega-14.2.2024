@@ -5,6 +5,7 @@ import { Server } from "socket.io";
 import mongoose from "mongoose";
 import prodsRouter from './routes/products.route.js'
 import chatRouter from './routes/chat.route.js'
+import cartRouter from './routes/cart.route.js'
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import MessagesDAO from "./daos/mongo.dao/messages.dao.js";
@@ -32,6 +33,7 @@ app.get("/", (req, res) => {
     res.redirect('/products')
 })
 
+app.get('/cart/', cartRouter)
 app.use('/products', prodsRouter)
 app.get('/chat/', chatRouter)
 

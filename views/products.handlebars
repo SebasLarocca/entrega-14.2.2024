@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/products.css">
     <title>Document</title>
 </head>
+
 <body>
     <div class="head_titles disp_flex">
         <a href="/products?stock">Mostrar solo productos con stock</a>
@@ -15,8 +17,19 @@
         <a href="/chat">Chat</a>
         <a href="/products/new">Acceso admin</a>
     </div>
+    <center>
+    <div>
+        {{#if products.hasPrevPage}}
+        <a class="pagina_anterior" href={{products.prevLink}}>Página anterior</a>
+        {{/if}}
+        Página actual:     {{products.page}}
+        {{#if products.hasNextPage}}
+        <a class="pagina_siguiente" href={{products.nextLink}}>Página siguiente</a>
+        {{/if}}
+    </div>
+    </center>
     <div class="cards_container">
-        {{#each products }}    
+        {{#each products.docs }}
         <div class="card">
             <div class="card_content">
                 <p class="card_title">{{this.title}}</p>
@@ -24,8 +37,9 @@
                 <p class="card_precio">$ {{this.price}}.-</p>
                 <p class="card_ver_detalles"><a href="/products/{{this._id}}">Ver detalles</a></p>
             </div>
-        </div>   
-        {{/each}} 
+        </div>
+        {{/each}}
     </div>
 </body>
+
 </html>
