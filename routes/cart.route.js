@@ -3,17 +3,11 @@ import CartsDao from "../daos/mongo.dao/cart.dao.js";
 
 const router = Router();
 
-router.get('/', (req, res) => {
-    res.send('Hola')
-})
-
 router.get('/cart', (req, res) => {
     CartsDao.createCart()
     res.send('ok')
 })
 
-// cart: 65d7d4540b75523bd4d3c35d
-// product: 65cb6cdf5de29649f76b9cb8
 router.delete('/:cid/products/:pid', async (req, res) => {
     let cartId = req.params.cid;
     let productId = req.params.pid
@@ -38,8 +32,12 @@ router.get('/carts', async (req, res) => {
     res.send(carts[0].products)
 })
 
-router.get('/cartaddprod', (req, res) => {
-    CartsDao.addProduct('65d53391618c613739db69a1')
-    res.send('agregado')
+
+router.put('/:cid/products/:pid', (req, res)=>{
+    const cartId = req.params.cid;
+    const productId = req.params.pid;
+    const quantity = req.body.quantity
+    CartsDao.mongotutorialupdate(cartId, productId, quantity)
+    res.send('Prodcuto agregado')
 })
 export default router;
