@@ -69,8 +69,10 @@ router.get("/new", (req, res) => {
     res.render('new-product')
 })
 
+
 router.get("/admin", async (req, res) => {
-    let products = await ProductsDAO.getAll();
+    let products = await ProductsDAO.getAll(1, 5, null );
+    console.log(products)
     res.render("adminManagement", { products })
 })
 router.get('/:id', async (req, res) => {

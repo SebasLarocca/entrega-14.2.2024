@@ -7,9 +7,13 @@
     <title>Document</title>
 </head>
 <body>
-    Proudctos carrito ID# {{carrito._id}}
+    <a href="/cart/cartslist">Volver al listado de carritos</a>
+    <a href="/products">Home</a>
+
+    <p>Productos carrito ID# {{carrito._id}}</p>
     {{#each carrito.products}}
     <p class="card_title"><strong>Titulo:</strong>  {{product.title}}, <strong>Cantidad: </strong>{{quantity}}</p>
     {{/each}}
+
 </body>
 </html>
