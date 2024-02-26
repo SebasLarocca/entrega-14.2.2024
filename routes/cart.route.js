@@ -32,8 +32,9 @@ router.delete('/:cid/products/:pid', async (req, res) => {
         }
     });
     cartProds.splice(index, 1)
-
-    res.send(cart.products)
+    const newCart = { $set: { "products": cart[0].products }}
+    const newCartArray = CartsDao.removeOneProduct(cartId, newCart)
+    res.send('Producto borrado')
 })
 
 //devuelve todos los carros con el populate

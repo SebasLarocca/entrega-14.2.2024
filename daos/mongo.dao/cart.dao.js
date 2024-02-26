@@ -34,9 +34,12 @@ class CartsDao {
     }
 
     static async removeProducts(cartId) {
-        return cartModel.updateOne({_id: cartId }, { $set : {"products": [] }} );
+        return cartModel.updateOne({ _id: cartId }, { $set: { "products": [] } });
     }
 
+    static async removeOneProduct(cartId, newCart) {
+        return cartModel.updateOne({ _id: cartId }, newCart );
+    }
     static async getCarts() {
         return cartModel.find().lean().populate('products.product');
     }
