@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/products.css">
+    <title>Document</title>
+</head>
+<body>
+    Proudctos carrito ID# {{carrito._id}}
+    {{#each carrito.products}}
+    <p class="card_title">titulo:  {{product.title}}</p>
+    <p class="card_title">cantidad:  {{quantity}}</p>
+    {{/each}}
+</body>
+</html>

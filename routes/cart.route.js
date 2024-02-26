@@ -44,6 +44,9 @@ router.get('/carts', async (req, res) => {
     res.send(carts)
 })
 
+
+
+
 //Agrega un producto al caro si no está ya incluido, o modifica su cantidad en caso que ya exista
 router.put('/:cid/products/:pid', (req, res)=>{
     const cartId = req.params.cid;
@@ -52,4 +55,23 @@ router.put('/:cid/products/:pid', (req, res)=>{
     CartsDao.addProduct(cartId, productId, quantity)
     res.send('Producto agregado')
 })
+
+
+
+//Muestra los carritos
+router.get('/cartslist', async (req, res)=>{
+    const carts = await CartsDao.getCarts()
+    console.log(carts)
+    res.render('carts', {carts})
+})
+
+//Muestra el detalle de 1 carrito
+router.get('/cartdetail/:cid', async (req, res)=>{
+    const cartId = req.params.cid;
+    const cart =  await CartsDao.getCartById(cartId);   
+    const carrito = cart[0]
+    console.log(carrito)
+    res.render('cartdetail', {carrito})
+})
+
 export default router;

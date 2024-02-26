@@ -2,11 +2,13 @@ import cartModel from "../../schemas/cart.schema.js";
 
 class CartsDao {
 
+    //Crea carrito
     static async createCart() {
         cartModel.create({
         })
     }
 
+    //Agrega producto a carrito
     static async addProduct(cartId, productId, cantidad) {
         const cart = await cartModel.find({ _id: cartId })
         let exists = false
@@ -33,19 +35,24 @@ class CartsDao {
         }
     }
 
+    //Vacia array de carrito
     static async removeProducts(cartId) {
         return cartModel.updateOne({ _id: cartId }, { $set: { "products": [] } });
     }
 
+    //Borra 1 producto de un carrito
     static async removeOneProduct(cartId, newCart) {
-        return cartModel.updateOne({ _id: cartId }, newCart );
+        return cartModel.updateOne({ _id: cartId }, newCart);
     }
+
+    //Trae todos los carritos
     static async getCarts() {
         return cartModel.find().lean().populate('products.product');
     }
 
+    //Trae un carrito por ID
     static async getCartById(id) {
-        return cartModel.find({ _id: id })
+        return cartModel.find({ _id: id }).lean().populate('products.product');
     }
 
 }
