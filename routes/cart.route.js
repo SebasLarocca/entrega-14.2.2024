@@ -14,7 +14,7 @@ router.delete('/:cid', async (req, res)=>{
     const cartId = req.params.cid;
     console.log(cartId)
     const result = await CartsDao.removeProducts(cartId);
-    res.send('productos borrados')
+    res.redirect('/products')
 })
 
 //Borrar 1 producto
@@ -51,7 +51,7 @@ router.post('/:cid/products/:pid', (req, res)=>{
     let quantity = req.body.quantity
     !quantity ? quantity = 1 : null
     CartsDao.addProduct(cartId, productId, quantity)
-    res.send('Producto agregado')
+    res.redirect('/products')
 })
 
 //Muestra los carritos
