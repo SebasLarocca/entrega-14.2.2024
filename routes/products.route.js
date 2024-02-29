@@ -1,10 +1,12 @@
 import { Router } from "express";
 import ProductsDAO from "../daos/mongo.dao/products.dao.js"
+import UsersDAO from "../daos/mongo.dao/users.dao.js";
 import upload from "../utils/upload.middleware.js";
 
 const router = Router();
 
 router.get('/', async (req, res) => {
+    
     let withStock = req.query.stock;
     let ascending = req.query.ascending
     let descending = req.query.descending

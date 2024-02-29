@@ -9,6 +9,12 @@ import cartRouter from './routes/cart.route.js'
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import MessagesDAO from "./daos/mongo.dao/messages.dao.js";
+import session from "express-session";
+import cookieParser from "cookie-parser";
+import MongoStore from "connect-mongo";
+import sessionsRouter from "./routes/sessions.route.js";
+import viewsRouter from "./routes/views.route.js";
+
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -29,9 +35,20 @@ app.use(express.json())
 // Public folder
 app.use(express.static('public'))
 
-app.get("/", (req, res) => {
-    res.redirect('/products')
-})
+//Cookies y session
+app.use(cookieParser());
+app.use(session({
+    store:MongoStore.create({
+        mongoUrl:"mongodb://localhost:27017/login",
+        ttl:15,
+    }),
+    secret:"secretCode",
+    resave:true,
+    saveUninitialized:true
+}))
+
+app.use("/api/sessions", sessionsRouter);
+app.use("/", viewsRouter);
 
 app.use('/cart/', cartRouter)
 app.use('/products', prodsRouter)
