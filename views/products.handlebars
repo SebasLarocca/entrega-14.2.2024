@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    
     <div class="head_titles disp_flex">
         <a href="/products?stock">Mostrar solo productos con stock</a>
         <a href="/products">Mostrar todos los productos</a>
@@ -31,6 +32,9 @@
         {{/if}}
     </div>
     </center>
+    <p>Hola {{userData.first_name}} {{userData.last_name}}</p>
+    <p>Que bueno tenerte aqui!</p>
+
     <div class="cards_container">
         {{#each products.docs }}
         <div class="card">

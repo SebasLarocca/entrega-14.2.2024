@@ -6,7 +6,9 @@ import upload from "../utils/upload.middleware.js";
 const router = Router();
 
 router.get('/', async (req, res) => {
-    
+    let user = req.query.user
+    let userData = await UsersDAO.getUserByID(user)
+    console.log(userData)
     let withStock = req.query.stock;
     let ascending = req.query.ascending
     let descending = req.query.descending
@@ -61,10 +63,10 @@ router.get('/', async (req, res) => {
         nextLink:products.nextLink 
     }
 
-    console.log(
-        object
-    )
-    res.render('products', {products} )
+    // console.log(
+    //     object
+    // )
+    res.render('products', {products, userData} )
 })
 
 router.get("/new", (req, res) => {

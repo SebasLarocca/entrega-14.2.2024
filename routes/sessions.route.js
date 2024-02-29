@@ -42,7 +42,7 @@ router.post("/login", async (req, res) => {
         res.redirect("/login");
     } else {
         req.session.user = user._id;
-        res.redirect("/profile");
+        res.redirect(`/products/?user=${req.session.user}`);
     }
 
 })

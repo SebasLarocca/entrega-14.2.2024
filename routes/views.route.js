@@ -13,7 +13,7 @@ router.get('/home', (req, res) => {
 
     
     if(req.session.user){
-        res.redirect("/profile");
+        res.redirect("/products");
     } else {
         res.render("home");
     }
@@ -27,7 +27,7 @@ router.get('/register', (req, res) => {
 router.get("/login", (req, res) => {
 
     if(req.session.user){
-        res.redirect("/profile");
+        res.redirect("/products");
     } else {
         res.render("login");
     }
