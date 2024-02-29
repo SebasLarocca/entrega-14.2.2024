@@ -15,7 +15,7 @@ class UsersDAO {
     }
 
     static async getUserByID(id) {
-        return await Users.findOne({_id:id},{first_name:1, last_name:1, age:1, email:1}).lean();
+        return await Users.findOne({_id:id},{first_name:1, last_name:1, age:1, email:1, isAdmin:1}).lean();
     }
 
 }

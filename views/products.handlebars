@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    
+
     <div class="head_titles disp_flex">
         <a href="/products?stock">Mostrar solo productos con stock</a>
         <a href="/products">Mostrar todos los productos</a>
@@ -21,18 +21,21 @@
         <a href="/products/new">Acceso admin</a>
     </div>
     <center>
-    <div>
-        
-        {{#if products.hasPrevPage}}
-        <a class="pagina_anterior" href={{products.prevLink}}>Página anterior</a>
-        {{/if}}
-        Página actual:     {{products.page}}
-        {{#if products.hasNextPage}}
-        <a class="pagina_siguiente" href={{products.nextLink}}>Página siguiente</a>
-        {{/if}}
-    </div>
+
+        <div>
+            {{#if products.hasPrevPage}}
+            <a class="pagina_anterior" href={{products.prevLink}}>Página anterior</a>
+            {{/if}}
+            Página actual: {{products.page}}
+            {{#if products.hasNextPage}}
+            <a class="pagina_siguiente" href={{products.nextLink}}>Página siguiente</a>
+            {{/if}}
+        </div>
     </center>
     <p>Hola {{userData.first_name}} {{userData.last_name}}</p>
+    {{#if userData.isAdmin}}
+    <p>Rol de administrador</p>
+    {{/if}}
     <p>Que bueno tenerte aqui!</p>
 
     <div class="cards_container">

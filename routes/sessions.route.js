@@ -47,6 +47,11 @@ router.post("/login", async (req, res) => {
 
 })
 
+router.get("/borrarusuarios", async (req, res)=>{
+    const usuarios = await UsersDAO.createAdmin()
+    res.send(usuarios)
+})
+
 router.get("/logout", (req, res) => {
     req.session.destroy((err) => {
         res.redirect("/home");
