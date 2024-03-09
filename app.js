@@ -6,6 +6,7 @@ import mongoose from "mongoose";
 import prodsRouter from './routes/products.route.js'
 import chatRouter from './routes/chat.route.js'
 import cartRouter from './routes/cart.route.js'
+import cookiesRouter from './routes/cookies.route.js'
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import MessagesDAO from "./daos/mongo.dao/messages.dao.js";
@@ -14,7 +15,6 @@ import cookieParser from "cookie-parser";
 import MongoStore from "connect-mongo";
 import sessionsRouter from "./routes/sessions.route.js";
 import viewsRouter from "./routes/views.route.js";
-
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -36,7 +36,7 @@ app.use(express.json())
 app.use(express.static('public'))
 
 //Cookies y session
-app.use(cookieParser());
+app.use(cookieParser('sebaspass'));
 app.use(session({
     store:MongoStore.create({
         mongoUrl:"mongodb://localhost:27017/login",
@@ -47,9 +47,9 @@ app.use(session({
     saveUninitialized:true
 }))
 
+app.use("/cookies/", cookiesRouter)
 app.use("/api/sessions", sessionsRouter);
 app.use("/", viewsRouter);
-
 app.use('/cart/', cartRouter)
 app.use('/products', prodsRouter)
 app.get('/chat/', chatRouter)
