@@ -58,11 +58,13 @@ const initializePassport =() => {
             let user = await usersSchema.findOne({email: profile._json.email})
             if(!user) {
                 let newUser = {
-                    first_name: profile._json.name,
-                    last_name: "",
+                    // first_name: profile._json.name,
+                    first_name: profile._json.login,
+                    last_name: " ",
                     age: 99,
-                    email: profile._json.email,
-                    password: ""
+                    // email: profile._json.email,
+                    email: 'usuario@usuario.com',
+                    password: " "
                 }
                 let result = await usersSchema.create(newUser);
                 done(null, result);
