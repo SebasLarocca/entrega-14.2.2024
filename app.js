@@ -1,20 +1,31 @@
+
 import http from "http";
 import express from "express";
 import { engine } from "express-handlebars";
+import config from "./config.js";
+
+//Chat imports
 import { Server } from "socket.io";
+import MessagesDAO from "./daos/mongo.dao/messages.dao.js";
+
+//Mongo imports
 import mongoose from "mongoose";
+import MongoStore from "connect-mongo";
+
+//Router imports
 import prodsRouter from './routes/products.route.js'
 import chatRouter from './routes/chat.route.js'
 import cartRouter from './routes/cart.route.js'
 import cookiesRouter from './routes/cookies.route.js'
-import { fileURLToPath } from 'node:url';
-import { dirname, join } from 'node:path';
-import MessagesDAO from "./daos/mongo.dao/messages.dao.js";
-import session from "express-session";
-import cookieParser from "cookie-parser";
-import MongoStore from "connect-mongo";
 import sessionsRouter from "./routes/sessions.route.js";
 import viewsRouter from "./routes/views.route.js";
+
+import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
+
+//Auth imports
+import session from "express-session";
+import cookieParser from "cookie-parser";
 import passport from 'passport'
 import initializePassport from "./config/passport.config.js";
 
@@ -23,7 +34,7 @@ const app = express();
 const httpServer = http.createServer(app);
 const io = new Server(httpServer);
 
-httpServer.listen(8080, () => { console.log('Server listening on port 8080') })
+httpServer.listen(config.port, () => { console.log(`Server listening on port ${config.port}`) })
 
 //view engine
 app.engine('handlebars', engine());
@@ -41,7 +52,7 @@ app.use(express.static('public'))
 app.use(cookieParser('sebaspass'));
 app.use(session({
     store:MongoStore.create({
-        mongoUrl:"mongodb://localhost:27017/login",
+        mongoUrl:"mongodb+srv://sebastianlarocca:RockyBalboa27@cluster0.xbrgkcu.mongodb.net/ecommerce?retryWrites=true&w=majority",
         ttl:15,
     }),
     secret:"secretCode",
@@ -60,9 +71,9 @@ app.use('/cart/', cartRouter)
 app.use('/products', prodsRouter)
 app.get('/chat/', chatRouter)
 
-app.get('/home', (req, res) => {
-    res.render('home')
-})
+// app.get('/home', (req, res) => {
+//     res.render('home')
+// })
 
 app.use((req, res, next) => {
     res.render('404')

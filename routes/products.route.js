@@ -6,9 +6,8 @@ import upload from "../utils/upload.middleware.js";
 const router = Router();
 
 router.get('/', async (req, res) => {
-    let user = req.query.user
+    let user = req.user
     let userData = await UsersDAO.getUserByID(user)
-    console.log(userData)
     let withStock = req.query.stock;
     let ascending = req.query.ascending
     let descending = req.query.descending
@@ -62,10 +61,6 @@ router.get('/', async (req, res) => {
         prevLink: products.prevLink,
         nextLink:products.nextLink 
     }
-
-    // console.log(
-    //     object
-    // )
     res.render('products', {products, userData} )
 })
 
@@ -73,12 +68,11 @@ router.get("/new", (req, res) => {
     res.render('new-product')
 })
 
-
 router.get("/admin", async (req, res) => {
     let products = await ProductsDAO.getAll(1, 5, null );
-    console.log(products)
     res.render("adminManagement", { products })
 })
+
 router.get('/:id', async (req, res) => {
     let id = req.params.id;
     if (!id) {
@@ -99,14 +93,12 @@ router.get('/:id', async (req, res) => {
 
 })
 
-
 router.post('/', upload.single('image'), async (req, res) => {
     let filename = req.file.filename;
     let product = req.body
     await ProductsDAO.add(product.title, product.description, filename, product.price, product.stock);
     res.redirect('/products');
 })
-
 
 router.post('/update/:id', async (req, res) => {
     let data = req.body

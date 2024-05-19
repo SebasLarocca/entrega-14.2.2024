@@ -2,7 +2,6 @@ import Router from "express";
 
 import UsersDAO from "../daos/mongo.dao/users.dao.js";
 
-
 const router = Router()
 
 router.get('/', (req, res) => {

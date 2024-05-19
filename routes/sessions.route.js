@@ -73,7 +73,9 @@ router.post('/login', passport.authenticate('login', {failureRedirect: '/api/ses
         age: req.user.age,
         email: req.user.email
     }
-    res.send({status: 'success', payload: req.user})
+    req.session.user = req.user;
+    res.redirect('/')
+    // res.send({status: 'success', payload: req.user})
 })
 
 //monchi es de ricardo
