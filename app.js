@@ -52,10 +52,10 @@ app.use(express.static('public'))
 app.use(cookieParser('sebaspass'));
 app.use(session({
     store:MongoStore.create({
-        mongoUrl:"mongodb+srv://sebastianlarocca:RockyBalboa27@cluster0.xbrgkcu.mongodb.net/ecommerce?retryWrites=true&w=majority",
+        mongoUrl:config.mongoURL,
         ttl:15,
     }),
-    secret:"secretCode",
+    secret:config.sessionSecret,
     resave:true,
     saveUninitialized:true
 }))
@@ -97,4 +97,4 @@ io.on('connection', (socket) => {
 //conexión a mongo db
 //acpa define: usuario (sebastianlarocca), pass (RockyBalboa27) y base de datos (ecommerce)
 //en el schema se define la colección a la que apunta.
-mongoose.connect('mongodb+srv://sebastianlarocca:RockyBalboa27@cluster0.xbrgkcu.mongodb.net/ecommerce?retryWrites=true&w=majority')
+mongoose.connect(config.mongoURL)

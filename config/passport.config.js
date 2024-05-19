@@ -3,7 +3,7 @@ import local from 'passport-local';
 import usersSchema from '../schemas/users.schema.js';
 import { createHash, isValidPassword } from '../utils/utils.js';
 import GitHubStrategy from 'passport-github2';
-
+import config from "../config.js";
 const LocalStrategy = local.Strategy;
 const initializePassport =() => {
 
@@ -49,9 +49,10 @@ const initializePassport =() => {
     
     //Estrategia de login con github
     passport.use('github', new GitHubStrategy({
-        clientID: 'Iv1.423d98cefe7ba72d',
-        clientSecret: '2f4720ca18d424db2fd8e386aa2cf2f6c188bca5',
-        callbackURL: 'http://localhost:8080/api/sessions/githubcallback'
+        // clientID: config.githubPassportClientId,
+        clientID: config.githubPassportClientId,
+        clientSecret: config.githubPassportClientSecret,
+        callbackURL: `http://localhost:${config.port}/api/sessions/githubcallback`
     }, async (accessToken, refreshToken, profile, done)=>{
         try{
             console.log(profile);
