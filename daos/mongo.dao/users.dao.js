@@ -10,14 +10,13 @@ class UsersDAO {
         return await Users.findOne({email, password});
     }
 
-    static async insert(first_name, last_name, age, email, password) {
-        return await new Users({first_name, last_name, age, email, password}).save();
+    static async insert(first_name, last_name, age, email, role="user", password ) {
+        return await new Users({first_name, last_name, age, email, role, password }).save();
     }
 
     static async getUserByID(id) {
-        return await Users.findOne({_id:id},{first_name:1, last_name:1, age:1, email:1, isAdmin:1}).lean();
+        return await Users.findOne({_id:id},{first_name:1, last_name:1, age:1, email:1, role:1}).lean();
     }
-
 }
 
 export default UsersDAO;

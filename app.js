@@ -4,6 +4,7 @@ import express from "express";
 import { engine } from "express-handlebars";
 import config from "./config.js";
 
+import user from "./middlewares/prueba.js";
 //Chat imports
 import { Server } from "socket.io";
 import MessagesDAO from "./daos/mongo.dao/messages.dao.js";
@@ -66,9 +67,9 @@ app.use(passport.session());
 
 app.use("/cookies/", cookiesRouter)
 app.use("/api/sessions", sessionsRouter);
-app.use("/", viewsRouter);
+app.use("/",  viewsRouter);
 app.use('/cart/', cartRouter)
-app.use('/products', prodsRouter)
+app.use('/products',prodsRouter)
 app.get('/chat/', chatRouter)
 
 // app.get('/home', (req, res) => {

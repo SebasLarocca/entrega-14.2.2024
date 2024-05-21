@@ -49,21 +49,18 @@ const initializePassport =() => {
     
     //Estrategia de login con github
     passport.use('github', new GitHubStrategy({
-        // clientID: config.githubPassportClientId,
         clientID: config.githubPassportClientId,
         clientSecret: config.githubPassportClientSecret,
         callbackURL: `http://localhost:${config.port}/api/sessions/githubcallback`
     }, async (accessToken, refreshToken, profile, done)=>{
         try{
             console.log(profile);
-            let user = await usersSchema.findOne({email: profile._json.email})
+            let user = await usersSchema.findOne({first_name: profile._json.login})
             if(!user) {
                 let newUser = {
-                    // first_name: profile._json.name,
                     first_name: profile._json.login,
                     last_name: " ",
                     age: 99,
-                    // email: profile._json.email,
                     email: 'usuario@usuario.com',
                     password: " "
                 }

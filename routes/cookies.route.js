@@ -2,7 +2,7 @@ import { Router } from "express";
 const router = Router();
 
 router.get('/setcookie', (req, res)=>{
-    res.cookie('primeraCookie', 'Esta es la primera cookie modificada', {maxAge: 100000, signed:true}).send('Cookie')
+    res.cookie('primeraCookie', 'Esta es la primera cookie modificada', {maxAge: 1000000, signed:true}).send('Cookie')
 })
 
 router.get('/getcookie', (req, res)=>{
@@ -12,6 +12,5 @@ router.get('/getcookie', (req, res)=>{
 router.get('/deletecookie', (req, res)=>{
     res.clearCookie('primeraCookie').send('Cookie eliminada')
 })
-
 
 export default router

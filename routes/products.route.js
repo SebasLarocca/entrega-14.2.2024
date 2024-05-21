@@ -2,10 +2,11 @@ import { Router } from "express";
 import ProductsDAO from "../daos/mongo.dao/products.dao.js"
 import UsersDAO from "../daos/mongo.dao/users.dao.js";
 import upload from "../utils/upload.middleware.js";
+import user from "../middlewares/prueba.js";
 
 const router = Router();
 
-router.get('/', async (req, res) => {
+router.get('/', user, async (req, res) => {
     let user = req.user
     let userData = await UsersDAO.getUserByID(user)
     let withStock = req.query.stock;
@@ -64,7 +65,7 @@ router.get('/', async (req, res) => {
     res.render('products', {products, userData} )
 })
 
-router.get("/new", (req, res) => {
+router.get("/new",user, (req, res) => {
     res.render('new-product')
 })
 
@@ -104,18 +105,8 @@ router.post('/update/:id', async (req, res) => {
     let data = req.body
     let id = req.params.id
     await ProductsDAO.update({ _id: id }, data);
-    res.status(200).send('update ok');
+    res.status(200).redirect('/products');
 })
-
-
-
-// //actualzizar valores de un producto
-// router.post('/update/:id', async (req, res)=>{
-//     let id = req.params.id;
-//     let data = req.body
-//     await ProductsDAO.update({_id: id}, data)
-//     res.status(200).send('Update ok')
-// })
 
 //Borrar un producto
 router.post('/:id', async (req, res) => {
@@ -125,15 +116,5 @@ router.post('/:id', async (req, res) => {
 })
 
 
-
-
-router.post('/update/:id', (req, res) => {
-    let data = req.body;
-    let id = req.params.id
-    console.log(data)
-    console.log(id)
-    // await ProductsDAO.update({_id: id}, data)
-    res.status(200).redirect('/products')
-})
 
 export default router;
