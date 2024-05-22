@@ -3,10 +3,11 @@ import ProductsDAO from "../daos/mongo.dao/products.dao.js"
 import UsersDAO from "../daos/mongo.dao/users.dao.js";
 import upload from "../utils/upload.middleware.js";
 import authenticate from "../middlewares/authentication.js";
+import authorization from "../middlewares/authorization.js";
 
 const router = Router();
 
-router.get('/', authenticate, async (req, res) => {
+router.get('/', authenticate, authorization(["client", "admin"]), async (req, res) => {
     let user = req.user
     let userData = await UsersDAO.getUserByID(user)
     let withStock = req.query.stock;
@@ -65,7 +66,7 @@ router.get('/', authenticate, async (req, res) => {
     res.render('products', {products, userData} )
 })
 
-router.get("/new",authenticate, (req, res) => {
+router.get("/new",authenticate, authorization(["admin"]),(req, res) => {
     res.render('new-product')
 })
 
