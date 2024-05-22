@@ -1,7 +1,10 @@
 import Router from "express";
 
 import UsersDAO from "../daos/mongo.dao/users.dao.js";
-import user from "../middlewares/prueba.js";
+import authenticate from "../middlewares/authentication.js";
+
+
+
 
 const router = Router()
 
@@ -31,7 +34,7 @@ router.get('/register', (req, res) => {
 //     }
 // })
 
-router.get("/login", user, (req, res) => {
+router.get("/login", authenticate, (req, res) => {
     
         res.redirect("/products");
  

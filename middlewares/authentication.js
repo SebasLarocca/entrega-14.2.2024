@@ -1,4 +1,4 @@
-const user = async (req, res, next)=>{
+const authenticate = async (req, res, next)=>{
     const user = req.session.user;  
     console.log(user);
     if(!user) {
@@ -9,4 +9,4 @@ const user = async (req, res, next)=>{
         return next()}  
 } 
 
-export default user;
+export default authenticate;

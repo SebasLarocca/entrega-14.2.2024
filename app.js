@@ -4,7 +4,7 @@ import express from "express";
 import { engine } from "express-handlebars";
 import config from "./config.js";
 
-import user from "./middlewares/prueba.js";
+import user from "./middlewares/authentication.js";
 //Chat imports
 import { Server } from "socket.io";
 import MessagesDAO from "./daos/mongo.dao/messages.dao.js";
@@ -54,7 +54,7 @@ app.use(cookieParser('sebaspass'));
 app.use(session({
     store:MongoStore.create({
         mongoUrl:config.mongoURL,
-        ttl:15,
+        ttl:1000*60*60,
     }),
     secret:config.sessionSecret,
     resave:true,

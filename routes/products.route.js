@@ -2,11 +2,11 @@ import { Router } from "express";
 import ProductsDAO from "../daos/mongo.dao/products.dao.js"
 import UsersDAO from "../daos/mongo.dao/users.dao.js";
 import upload from "../utils/upload.middleware.js";
-import user from "../middlewares/prueba.js";
+import authenticate from "../middlewares/authentication.js";
 
 const router = Router();
 
-router.get('/', user, async (req, res) => {
+router.get('/', authenticate, async (req, res) => {
     let user = req.user
     let userData = await UsersDAO.getUserByID(user)
     let withStock = req.query.stock;
@@ -65,16 +65,16 @@ router.get('/', user, async (req, res) => {
     res.render('products', {products, userData} )
 })
 
-router.get("/new",user, (req, res) => {
+router.get("/new",authenticate, (req, res) => {
     res.render('new-product')
 })
 
-router.get("/admin", async (req, res) => {
+router.get("/admin", authenticate,async (req, res) => {
     let products = await ProductsDAO.getAll(1, 5, null );
     res.render("adminManagement", { products })
 })
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', authenticate,async (req, res) => {
     let id = req.params.id;
     if (!id) {
         res.redirect('/products')
@@ -94,14 +94,14 @@ router.get('/:id', async (req, res) => {
 
 })
 
-router.post('/', upload.single('image'), async (req, res) => {
+router.post('/', authenticate,upload.single('image'), async (req, res) => {
     let filename = req.file.filename;
     let product = req.body
     await ProductsDAO.add(product.title, product.description, filename, product.price, product.stock);
     res.redirect('/products');
 })
 
-router.post('/update/:id', async (req, res) => {
+router.post('/update/:id',authenticate, async (req, res) => {
     let data = req.body
     let id = req.params.id
     await ProductsDAO.update({ _id: id }, data);
@@ -109,7 +109,7 @@ router.post('/update/:id', async (req, res) => {
 })
 
 //Borrar un producto
-router.post('/:id', async (req, res) => {
+router.post('/:id', authenticate,async (req, res) => {
     let productToDelete = req.params.id;
     await ProductsDAO.remove(productToDelete);
     res.status(201).redirect("/products")
