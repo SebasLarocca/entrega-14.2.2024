@@ -3,6 +3,7 @@ import http from "http";
 import express from "express";
 import { engine } from "express-handlebars";
 import config from "./config.js";
+import compression from "express-compression";
 
 import user from "./middlewares/authentication.js";
 //Chat imports
@@ -45,6 +46,9 @@ app.set('views', './views')
 //Middlewares request
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
+app.use(compression({
+    brotli: {enabled: true, zlib: {}}} //optimiza comprimiendo texto
+))
 
 // Public folder
 app.use(express.static('public'))
