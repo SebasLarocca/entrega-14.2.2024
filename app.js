@@ -4,8 +4,8 @@ import express from "express";
 import { engine } from "express-handlebars";
 import config from "./config.js";
 import compression from "express-compression";
+import { Command } from "commander"; // librería para manejo de argumentos pasados por linea de comandos
 
-import user from "./middlewares/authentication.js";
 //Chat imports
 import { Server } from "socket.io";
 import MessagesDAO from "./daos/mongo.dao/messages.dao.js";
@@ -35,8 +35,13 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 const httpServer = http.createServer(app);
 const io = new Server(httpServer);
-
 httpServer.listen(config.port, () => { console.log(`Server listening on port ${config.port}`) })
+
+//Para toamr los comandos de consola. 
+//Setea el mpetodo de persistencia
+const program = new Command();
+program.requiredOption('-persistance', 'modo de persistencia elegido: mongo o filesystem', 'mongo') //El metodo queda guardado en program.opts().Persistance. El default es mongo
+program.parse(); //cierra la configuración de comandos.
 
 //view engine
 app.engine('handlebars', engine());

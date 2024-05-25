@@ -1,0 +1,42 @@
+[
+    {
+        "_id": 1,
+        "title": "Sprite - 355 Ml",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ullamcorper a lacus vestibulum sed arcu. Ultrices mi tempus imperdiet nulla malesuada. Quis hendrerit dolor magna eget est lorem. Sagittis id consectetur purus ut faucibus pulvinar. Nibh sit amet commodo nulla. Sapien faucibus et molestie ac feugiat sed lectus vestibulum mattis. Egestas dui id ornare arcu.",
+        "price": 7529,
+        "stock": 86,
+        "photo": "1707830495225-977174749.png"
+    },
+    {
+        "_id": 2,
+        "title": "Pasta - Orecchiette",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ullamcorper a lacus vestibulum sed arcu. Ultrices mi tempus imperdiet nulla malesuada. Quis hendrerit dolor magna eget est lorem. Sagittis id consectetur purus ut faucibus pulvinar. Nibh sit amet commodo nulla. Sapien faucibus et molestie ac feugiat sed lectus vestibulum mattis. Egestas dui id ornare arcu.",
+        "price": 427,
+        "stock": 43,
+        "photo": "1707830495225-977174749.png"
+    },
+    {
+        "_id": 3,
+        "title": "Mahi Mahi",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ullamcorper a lacus vestibulum sed arcu. Ultrices mi tempus imperdiet nulla malesuada. Quis hendrerit dolor magna eget est lorem. Sagittis id consectetur purus ut faucibus pulvinar. Nibh sit amet commodo nulla. Sapien faucibus et molestie ac feugiat sed lectus vestibulum mattis. Egestas dui id ornare arcu.",
+        "price": 5320,
+        "stock": 26,
+        "photo": "1707830495225-977174749.png"
+    },
+    {
+        "_id": 4,
+        "title": "Beans - Kidney, Canned",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ullamcorper a lacus vestibulum sed arcu. Ultrices mi tempus imperdiet nulla malesuada. Quis hendrerit dolor magna eget est lorem. Sagittis id consectetur purus ut faucibus pulvinar. Nibh sit amet commodo nulla. Sapien faucibus et molestie ac feugiat sed lectus vestibulum mattis. Egestas dui id ornare arcu.",
+        "price": 6625,
+        "stock": 90,
+        "photo": "1707830495225-977174749.png"
+    },
+    {
+        "_id": 5,
+        "title": "Table Cloth 54x72 Colour",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ullamcorper a lacus vestibulum sed arcu. Ultrices mi tempus imperdiet nulla malesuada. Quis hendrerit dolor magna eget est lorem. Sagittis id consectetur purus ut faucibus pulvinar. Nibh sit amet commodo nulla. Sapien faucibus et molestie ac feugiat sed lectus vestibulum mattis. Egestas dui id ornare arcu.",
+        "price": 185,
+        "stock": 9,
+        "photo": "1707830495225-977174749.png"
+    }
+]

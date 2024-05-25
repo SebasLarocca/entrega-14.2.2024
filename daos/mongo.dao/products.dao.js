@@ -4,6 +4,8 @@ class ProductsDAO {
 
     static async getAll(page, limit, filter) {
         let parsedFilter = await JSON.parse(filter)
+        let prods = await Products.paginate(parsedFilter, {page, limit, lean: true})
+        console.log();
         return Products.paginate(parsedFilter, {page, limit, lean: true});
     }
 

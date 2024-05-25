@@ -1,5 +1,5 @@
 import { Router } from "express";
-import ProductsDAO from "../daos/mongo.dao/products.dao.js"
+import {ProductsDAO} from "../daos/products.factory.js"
 import UsersDAO from "../daos/mongo.dao/users.dao.js";
 import upload from "../utils/upload.middleware.js";
 import authenticate from "../middlewares/authentication.js";
@@ -43,7 +43,6 @@ router.get('/', authenticate, authorization(["client", "admin"]), async (req, re
         let limit = parseInt(req.query.limit)
         let filter = req.params.filter
         if(!filter) filter =null
-        console.log(filter)
         if(!limit) limit=10
         if(!page) page=1
         products = await ProductsDAO.getAll(page, limit, filter);

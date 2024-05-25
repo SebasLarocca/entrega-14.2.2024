@@ -1,17 +1,18 @@
 import Products from '../../schemas/products.schema.js';
 import fs from 'fs'
 import __dirname from '../../utils/utils.js';
-class ProductsDAO {
+import { parse } from 'path';
+
+class ProductsFileSystem {
 
     static async getAll(page, limit, filter) {
-        const products = await fs.promises.readFile("../../MOCK_DATA.json", 'utf-8')
+        const products = await fs.promises.readFile("MOCK_DATA.json", 'utf-8')
         const parsedProducts = JSON.parse(products);
-        
-        return Products.paginate(parsedFilter, {page, limit, lean: true});
+        return  {docs: parsedProducts};
     }
 
     static async getAllWithStock() {
-        return Products.paginate({stock: {$gt:0}}, {page:1, limit:5, lean: true})
+       await this.getAll()
     }
 
     static async getAllAscending(page, limit, filter) {
@@ -41,4 +42,4 @@ class ProductsDAO {
 }
 
 
-export default ProductsDAO;
+export default ProductsFileSystem;
