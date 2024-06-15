@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
-//firma del cart
-//[{"products":[{"product":"4","quantity":4}],"id":0}]
+
 const CartsSchema = new mongoose.Schema({
     products: {
         type: [
@@ -15,6 +14,10 @@ const CartsSchema = new mongoose.Schema({
             }
         ],
         default: []
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'users'
     }
 }
 

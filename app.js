@@ -31,6 +31,12 @@ import cookieParser from "cookie-parser";
 import passport from 'passport'
 import initializePassport from "./config/passport.config.js";
 
+//para probar el logger
+import {addProdLogger} from "./utils/logger/loggerProduction.js";
+
+//para probar stress test o prueba de carga
+import { operacionSencilla, operacionCompleja } from "./utils/stressTest.js";
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 const httpServer = http.createServer(app);
@@ -47,6 +53,8 @@ program.parse(); //cierra la configuración de comandos.
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set('views', './views')
+app.use(addProdLogger)
+// console.log(addLogger);
 
 //Middlewares request
 app.use(express.urlencoded({ extended: true }));
@@ -75,6 +83,17 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/cookies/", cookiesRouter)
+//para probar el logger
+app.use("/logger", (req,res)=>{
+    req.logger.warning('Alerta!') //como el middleware ya le sumo la instancia logger a la req, la puedo usar aca
+    res.send({message: 'Prueba de logger'})
+})
+//para probar el stress test o la prueba de carga
+//operacion sencilla
+app.use('/operacionsencilla', operacionSencilla)
+//operacion compleja
+app.use('/operacionsencilla', operacionCompleja)
+
 app.use("/api/sessions", sessionsRouter);
 app.use("/",  viewsRouter);
 app.use('/cart/', cartRouter)

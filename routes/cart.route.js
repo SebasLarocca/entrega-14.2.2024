@@ -4,9 +4,16 @@ import authenticate from "../middlewares/authentication.js";
 
 const router = Router();
 
+router.get('/pruebacreacart', authenticate, (req, res)=>{
+    res.render('createCartTest')
+})
+
 //Crea un carro
-router.get('/cart', authenticate,(req, res) => {
-    CartsDao.createCart()
+router.get('/cart', 
+    authenticate,
+    (req, res) => {
+    let user = req.session.user
+    CartsDao.createCart(user)
     res.send('ok')
 })
 

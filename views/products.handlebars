@@ -41,7 +41,7 @@
                 <img src="images/products/{{this.photo}}" class="card_img" alt="{{this.title}}">
                 <p class="card_precio">$ {{this.price}}.-</p>
                 <p class="card_ver_detalles"><a href="/products/{{this._id}}">Ver detalles</a></p>
-                <form action="/cart/65d7d4540b75523bd4d3c35d/products/{{this._id}}" method="post">
+                <form action="/cart/{{../cartId}}/products/{{this._id}}" method="post">
                     <button class="submit_button" type="submit">Agregar a carrito</button>
                 </form>
             </div>

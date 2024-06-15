@@ -6,27 +6,20 @@ OK Agregar a la vista de productos un mensaje de bienvenida con los datos del us
 OK Agregar un sistema de roles, de manera que si colocamos en el login como correo adminCoder@coder.com, y la contraseña adminCod3r123, el usuario de la sesión además tenga un campo 
 OK Todos los usuarios que no sean admin deberán contar con un rol “usuario”.
 OK Implementar botón de “logout” para destruir la sesión y redirigir a la vista de login
+OK Modificar nuestra capa de persistencia para aplicar los conceptos de Factory (opcional), DAO y DTO. 
+OK El DAO seleccionado (por un parámetro en línea de comandos como lo hicimos anteriormente) será devuelto por una Factory para que la capa de negocio opere con él. (Factory puede ser opcional)
+OK Modificar la ruta  /current Para evitar enviar información sensible, enviar un DTO del usuario sólo con la información necesaria.
+OK Realizar un middleware que pueda trabajar en conjunto con la estrategia “current” para hacer un sistema de autorización y delimitar el acceso a dichos endpoints:
+OK Sólo el administrador puede crear, actualizar y eliminar productos.
+OK Sólo el usuario puede enviar mensajes al chat.
+OK Sólo el usuario puede agregar productos a su carrito.
 
 
 
 
 
 
-
-1/4 
-Se debe entregar
-
-Modificar nuestra capa de persistencia para aplicar los conceptos de Factory (opcional), DAO y DTO. 
-Se debe entregar
-
-El DAO seleccionado (por un parámetro en línea de comandos como lo hicimos anteriormente) será devuelto por una Factory para que la capa de negocio opere con él. (Factory puede ser opcional)
 Implementar el patrón Repository para trabajar con el DAO en la lógica de negocio. 
-Modificar la ruta  /current Para evitar enviar información sensible, enviar un DTO del usuario sólo con la información necesaria.
-
-Realizar un middleware que pueda trabajar en conjunto con la estrategia “current” para hacer un sistema de autorización y delimitar el acceso a dichos endpoints:
-Sólo el administrador puede crear, actualizar y eliminar productos.
-Sólo el usuario puede enviar mensajes al chat.
-Sólo el usuario puede agregar productos a su carrito.
 
 Crear un modelo Ticket el cual contará con todas las formalizaciones de la compra. Éste contará con los campos
  - Id (autogenerado por mongo)
@@ -57,7 +50,7 @@ Además, generar un customizador de errores y crear un diccionario para tus erro
 17/4
 Aspectos a incluir
 
-Primero, definir un sistema de niveles que tenga la siguiente prioridad (de menor a mayor):
+OK- Primero, definir un sistema de niveles que tenga la siguiente prioridad (de menor a mayor):
 debug, http, info, warning, error, fatal
 Después implementar un logger para desarrollo y un logger para producción, el logger de desarrollo deberá loggear a partir del nivel debug, sólo en consola
 Sin embargo, el logger del entorno productivo debería loggear sólo a partir de nivel info.
@@ -81,3 +74,13 @@ Un usuario premium sólo pueda borrar los productos que le pertenecen.
 El admin pueda borrar cualquier producto, aún si es de un owner.
 Además, modificar la lógica de carrito para que un usuario premium NO pueda agregar a su carrito un producto que le pertenece
 Implementar una nueva ruta en el router de api/users, la cual será /api/users/premium/:uid  la cual permitirá cambiar el rol de un usuario, de “user” a “premium” y viceversa.
+
+
+Video de entrega final:
+En el ppunto del router de usuarios: es importante que haya un dto involucrado para una correcta división de capas.
+El método delete para limpiar usuarios que no se conectan hace 2 dias, que sea solo accesible por un admin
+Vistas de flujo de compras: visualizacio del producto, agregado al carrito, visualizacion de lcarrito....
+registro y login, visualizacion del prod, compra. 
+
+No es necesario vistas que corresponden a modulos que no son influyentes en el proceso de compras. 
+las necesarias son las que, dde que me registro hasta que compro, todo lo que esté involucrado.

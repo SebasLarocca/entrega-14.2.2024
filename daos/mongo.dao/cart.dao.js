@@ -3,9 +3,12 @@ import cartModel from "../../schemas/cart.schema.js";
 class CartsDao {
 
     //Crea carrito
-    static async createCart() {
-        cartModel.create({
+    static async createCart(user) {
+        let cart = cartModel.create({
+            user: user
         })
+
+        return cart
     }
 
     //Agrega producto a carrito
@@ -53,6 +56,11 @@ class CartsDao {
     //Trae un carrito por ID
     static async getCartById(id) {
         return cartModel.find({ _id: id }).lean().populate('products.product');
+    }
+
+    //Trae un carrito por usuario 
+    static async getCartByUser(userID) {
+        return cartModel.find({user: userID}).lean()
     }
 
 }

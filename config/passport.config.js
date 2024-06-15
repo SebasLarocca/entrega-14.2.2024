@@ -40,7 +40,7 @@ const initializePassport =() => {
                 console.log('User doesn´t exist')
                 return done (null, false)
             }
-            if(isValidPassword(user, password)) return done (null, false);
+            if(!isValidPassword(user, password)) return done (null, false);
             return done(null, user);
         } catch (error) {
             return done(error)
@@ -62,7 +62,7 @@ const initializePassport =() => {
                     last_name: " ",
                     age: 99,
                     email: 'usuario@usuario.com',
-                    password: " "
+                    password: " ",
                 }
                 let result = await usersSchema.create(newUser);
                 done(null, result);
