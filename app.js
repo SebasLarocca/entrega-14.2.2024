@@ -21,6 +21,7 @@ import cartRouter from './routes/cart.route.js'
 import cookiesRouter from './routes/cookies.route.js'
 import sessionsRouter from "./routes/sessions.route.js";
 import viewsRouter from "./routes/views.route.js";
+import ticketsRouter from "./routes/tickets.route.js";
 
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
@@ -99,6 +100,7 @@ app.use("/",  viewsRouter);
 app.use('/cart/', cartRouter)
 app.use('/products',prodsRouter)
 app.get('/chat/', chatRouter)
+app.use('/tickets/', ticketsRouter)
 
 // app.get('/home', (req, res) => {
 //     res.render('home')

@@ -75,6 +75,7 @@ router.get('/', authenticate,
             nextLink: products.nextLink
         }
         let cartId = cart[0]._id.toString()
+        console.log(cartId);
         res.render('products', { products, userData, cartId})
     })
 
