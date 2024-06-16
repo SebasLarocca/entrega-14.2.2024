@@ -11,6 +11,12 @@ class CartsDao {
         return cart
     }
 
+    // Chequeo si un carrito existe o no por usuario
+    static async cartExists(user) {
+        let exists = cartModel.exists({user: user})
+        return exists
+    }
+    
     //Agrega producto a carrito
     static async addProduct(cartId, productId, cantidad) {
         const cart = await cartModel.find({ _id: cartId })
@@ -48,6 +54,9 @@ class CartsDao {
         return cartModel.updateOne({ _id: cartId }, newCart);
     }
 
+    static async getUserCart(user) {
+        return cartModel.find({user: user})
+    }
     //Trae todos los carritos
     static async getCarts() {
         return cartModel.find().lean().populate('products.product');
@@ -60,7 +69,7 @@ class CartsDao {
 
     //Trae un carrito por usuario 
     static async getCartByUser(userID) {
-        return cartModel.find({user: userID}).lean()
+        return cartModel.find({user: userID}).lean().populate('products.product');
     }
 
 }

@@ -1,20 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/products.css">
     <title>Document</title>
 </head>
-
 <body>
-    <a href="/products">Home</a>
-    <p>Productos carrito de {{user.first_name}}</p>
-    {{#each cart.products}}
-    <p class="card_title"><strong>Titulo:</strong> {{product.title}}, <strong>Cantidad: </strong>{{quantity}}</p>
-    {{/each}}
-
+    <p><a href="/products">Home</a></p>
+    <a href="/cart/cartdetail/{{_id}}" <p class="card_title">ID de carrito: {{_id}}</p></a>
 </body>
-
 </html>

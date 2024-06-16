@@ -18,11 +18,14 @@ router.get('/', authenticate,
         let ascending = req.query.ascending
         let descending = req.query.descending
         let products;
-        // let cart = await CartsDao.getCartByUser(user)
-        // console.log("Carrito :" + cart);
-        // if(!cart){ cart =  await CartsDao.createCart(user) }
-
-        // let cartId = cart[0]._id.toString()
+        let cartExists = await CartsDao.cartExists(user)
+        let cart;
+        if (cartExists){
+            cart = await CartsDao.getCartByUser(user)
+        } else {
+            cart =  await CartsDao.createCart(user)
+            cart = [cart]
+        }
         if (withStock != undefined) {
             products = await ProductsDAO.getAllWithStock()
         } else if (ascending != undefined) {
@@ -71,10 +74,8 @@ router.get('/', authenticate,
             prevLink: products.prevLink,
             nextLink: products.nextLink
         }
-
-        res.render('products', { products, userData, 
-            // cartId
-         })
+        let cartId = cart[0]._id.toString()
+        res.render('products', { products, userData, cartId})
     })
 
 router.get("/new", authenticate, authorization(["admin"]), (req, res) => {

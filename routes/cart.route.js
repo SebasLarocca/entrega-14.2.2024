@@ -52,6 +52,13 @@ router.get('/carts', authenticate ,async (req, res) => {
     res.send(carts)
 })
 
+//devuelve el carro del usuario con el populate
+// router.get('/usercart', authenticate ,async (req, res) => {
+//     let user = req.session.user
+//     let cart = await CartsDao.getUserCart(user)
+//     res.render('usercart', {cart})
+// })
+
 //Agrega un producto al caro si no está ya incluido, o modifica su cantidad en caso que ya exista
 router.post('/:cid/products/:pid', authenticate,(req, res)=>{
     const cartId = req.params.cid;
@@ -69,11 +76,12 @@ router.get('/cartslist',authenticate,async (req, res)=>{
 })
 
 //Muestra el detalle de 1 carrito
-router.get('/cartdetail/:cid', authenticate,async (req, res)=>{
-    const cartId = req.params.cid;
-    const cart =  await CartsDao.getCartById(cartId);   
-    const carrito = cart[0]
-    res.render('cartdetail', {carrito})
+router.get('/usercart', authenticate,async (req, res)=>{
+    let user = req.session.user
+    let cart = await CartsDao.getCartByUser(user)
+    cart = cart[0]
+    console.log(user);
+    res.render('cartdetail', {cart, user})
 })
 
 export default router;

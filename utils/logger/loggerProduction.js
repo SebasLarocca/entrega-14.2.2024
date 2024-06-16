@@ -43,7 +43,7 @@ const logger = winston.createLogger({
 export const addProdLogger =  (req,res,next)=>{
     req.logger = logger;
     let date = new Date().toLocaleTimeString()
-    req.logger.http(`Desde production logger: ${req.method} en ${req.url} - ${date}`);
+    // req.logger.http(`Desde production logger: ${req.method} en ${req.url} - ${date}`);
     next()
 }
 
