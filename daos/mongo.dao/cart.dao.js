@@ -49,6 +49,14 @@ class CartsDao {
         return cartModel.updateOne({ _id: cartId }, { $set: { "products": [] } });
     }
 
+    //Llena array con productos (para cuando debe ser completado con los que no se pudieron comprar)
+
+    static async addNoPurchasedProducts(cartId, noStockProducts) {
+        let newTicketProducts = await cartModel.updateOne(
+            { _id: cartId },
+            { $set: { products: noStockProducts } })
+    }
+
     //Borra 1 producto de un carrito
     static async removeOneProduct(cartId, newCart) {
         return cartModel.updateOne({ _id: cartId }, newCart);

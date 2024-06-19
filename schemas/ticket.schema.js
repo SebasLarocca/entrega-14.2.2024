@@ -10,9 +10,20 @@ const ticketsSchema = new mongoose.Schema({
     },
     purchaser: {
         type: String
-    }
+    },
+    products: {
+        type: [
+            {
+                product: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: 'products'
+                }
+            }
+        ],
+        default: []
+    },
 },
-{ timestamps: true }
+    { timestamps: true }
 );
 
 //acá define la colección (products) a la que apunta

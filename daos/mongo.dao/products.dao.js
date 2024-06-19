@@ -33,6 +33,10 @@ class ProductsDAO {
         return Products.findOneAndUpdate({ _id: id}, data)
     }
 
+    // static async uptate(id, data) {
+    //     return Products.findOneAndUpdate({ _id: id}, data)
+    // }
+
     static async remove(id) {
         return Products.findByIdAndDelete(id);
     }

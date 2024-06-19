@@ -1,0 +1,82 @@
+{
+  "aggregate": {
+    "counters": {
+      "vusers.created_by_name.0": 40,
+      "vusers.created": 40,
+      "http.requests": 40,
+      "plugins.metrics-by-endpoint.//localhost:8081/operacioncompleja.errors.ETIMEDOUT": 34,
+      "errors.ETIMEDOUT": 34,
+      "vusers.failed": 40,
+      "plugins.metrics-by-endpoint.//localhost:8081/operacioncompleja.errors.ENOTFOUND": 6,
+      "errors.ENOTFOUND": 6
+    },
+    "rates": {
+      "http.request_rate": 13
+    },
+    "firstCounterAt": 1718767639824,
+    "lastCounterAt": 1718767650817,
+    "firstMetricAt": 1718767639824,
+    "lastMetricAt": 1718767650817,
+    "period": 1718767650000,
+    "summaries": {},
+    "histograms": {}
+  },
+  "intermediate": [
+    {
+      "counters": {
+        "vusers.created_by_name.0": 8,
+        "vusers.created": 8,
+        "http.requests": 8
+      },
+      "rates": {
+        "http.request_rate": 8
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1718767639824,
+      "lastCounterAt": 1718767639999,
+      "firstMetricAt": 1718767639824,
+      "lastMetricAt": 1718767639999,
+      "period": "1718767630000",
+      "summaries": {},
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.0": 32,
+        "vusers.created": 32,
+        "http.requests": 32,
+        "plugins.metrics-by-endpoint.//localhost:8081/operacioncompleja.errors.ENOTFOUND": 6,
+        "errors.ENOTFOUND": 6,
+        "vusers.failed": 7,
+        "plugins.metrics-by-endpoint.//localhost:8081/operacioncompleja.errors.ETIMEDOUT": 1,
+        "errors.ETIMEDOUT": 1
+      },
+      "rates": {
+        "http.request_rate": 32
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1718767640022,
+      "lastCounterAt": 1718767649990,
+      "firstMetricAt": 1718767640022,
+      "lastMetricAt": 1718767649990,
+      "period": "1718767640000",
+      "summaries": {},
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "plugins.metrics-by-endpoint.//localhost:8081/operacioncompleja.errors.ETIMEDOUT": 33,
+        "errors.ETIMEDOUT": 33,
+        "vusers.failed": 33
+      },
+      "rates": {},
+      "firstCounterAt": 1718767650005,
+      "lastCounterAt": 1718767650817,
+      "firstMetricAt": 1718767650005,
+      "lastMetricAt": 1718767650817,
+      "period": "1718767650000",
+      "summaries": {},
+      "histograms": {}
+    }
+  ]
+}

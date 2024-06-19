@@ -1,0 +1,19 @@
+<h1>Tu compra:</h1>
+
+<h2>Productos</h2>
+<ul>
+{{#each purchase }}
+<li>{{this.product.title}}, {{this.quantity}} unidades</li>
+{{/each}}
+</ul>
+<h2>Monto total: {{totalAmmount}}</h2>
+
+<h3>Productos no incluidos por falta de stock: </h3>
+<ul>
+{{#each noStockProducts }}
+<li>{{this.product.title}}, {{this.quantity}} unidades</li>
+{{/each}}
+</ul>
+
+<button><a href="/cart/{{cartID}}/purchaseconfirmation">Confirmar compra</a></button>
+<button><a href="/products">Home</a></button>

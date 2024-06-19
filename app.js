@@ -22,6 +22,7 @@ import cookiesRouter from './routes/cookies.route.js'
 import sessionsRouter from "./routes/sessions.route.js";
 import viewsRouter from "./routes/views.route.js";
 import ticketsRouter from "./routes/tickets.route.js";
+import mockingRouter from './routes/mocking.route.js'
 
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
@@ -67,6 +68,8 @@ app.use(compression({
 // Public folder
 app.use(express.static('public'))
 
+
+
 //Cookies y session
 app.use(cookieParser('sebaspass'));
 app.use(session({
@@ -93,7 +96,7 @@ app.use("/logger", (req,res)=>{
 //operacion sencilla
 app.use('/operacionsencilla', operacionSencilla)
 //operacion compleja
-app.use('/operacionsencilla', operacionCompleja)
+app.use('/operacioncompleja', operacionCompleja)
 
 app.use("/api/sessions", sessionsRouter);
 app.use("/",  viewsRouter);
@@ -101,6 +104,7 @@ app.use('/cart/', cartRouter)
 app.use('/products',prodsRouter)
 app.get('/chat/', chatRouter)
 app.use('/tickets/', ticketsRouter)
+app.use('/mockingproducts/', mockingRouter);
 
 // app.get('/home', (req, res) => {
 //     res.render('home')

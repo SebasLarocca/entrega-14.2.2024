@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { ProductsDAO } from "../daos/products.factory.js"
 import UsersDAO from "../daos/mongo.dao/users.dao.js";
-import  CartsDao from "../daos/mongo.dao/cart.dao.js"
+import CartsDao from "../daos/mongo.dao/cart.dao.js"
 import upload from "../utils/upload.middleware.js";
 import authenticate from "../middlewares/authentication.js";
 import authorization from "../middlewares/authorization.js";
@@ -20,10 +20,10 @@ router.get('/', authenticate,
         let products;
         let cartExists = await CartsDao.cartExists(user)
         let cart;
-        if (cartExists){
+        if (cartExists) {
             cart = await CartsDao.getCartByUser(user)
         } else {
-            cart =  await CartsDao.createCart(user)
+            cart = await CartsDao.createCart(user)
             cart = [cart]
         }
         if (withStock != undefined) {
@@ -76,7 +76,8 @@ router.get('/', authenticate,
         }
         let cartId = cart[0]._id.toString()
         console.log(cartId);
-        res.render('products', { products, userData, cartId})
+        // console.log(products);
+        res.render('products', { products, userData, cartId })
     })
 
 router.get("/new", authenticate, authorization(["admin"]), (req, res) => {

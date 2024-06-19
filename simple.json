@@ -1,0 +1,64 @@
+{
+  "aggregate": {
+    "counters": {
+      "vusers.created_by_name.0": 40,
+      "vusers.created": 40,
+      "http.requests": 40,
+      "plugins.metrics-by-endpoint.//localhost:8081/operacionsencilla.errors.ENOTFOUND": 6,
+      "errors.ENOTFOUND": 6,
+      "vusers.failed": 40,
+      "plugins.metrics-by-endpoint.//localhost:8081/operacionsencilla.errors.ETIMEDOUT": 34,
+      "errors.ETIMEDOUT": 34
+    },
+    "rates": {
+      "http.request_rate": 20
+    },
+    "firstCounterAt": 1718767415534,
+    "lastCounterAt": 1718767426512,
+    "firstMetricAt": 1718767415534,
+    "lastMetricAt": 1718767426512,
+    "period": 1718767420000,
+    "summaries": {},
+    "histograms": {}
+  },
+  "intermediate": [
+    {
+      "counters": {
+        "vusers.created_by_name.0": 40,
+        "vusers.created": 40,
+        "http.requests": 40,
+        "plugins.metrics-by-endpoint.//localhost:8081/operacionsencilla.errors.ENOTFOUND": 2,
+        "errors.ENOTFOUND": 2,
+        "vusers.failed": 2
+      },
+      "rates": {
+        "http.request_rate": 40
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1718767415534,
+      "lastCounterAt": 1718767418299,
+      "firstMetricAt": 1718767415534,
+      "lastMetricAt": 1718767418299,
+      "period": "1718767410000",
+      "summaries": {},
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "plugins.metrics-by-endpoint.//localhost:8081/operacionsencilla.errors.ENOTFOUND": 4,
+        "errors.ENOTFOUND": 4,
+        "vusers.failed": 38,
+        "plugins.metrics-by-endpoint.//localhost:8081/operacionsencilla.errors.ETIMEDOUT": 34,
+        "errors.ETIMEDOUT": 34
+      },
+      "rates": {},
+      "firstCounterAt": 1718767420995,
+      "lastCounterAt": 1718767426512,
+      "firstMetricAt": 1718767420995,
+      "lastMetricAt": 1718767426512,
+      "period": "1718767420000",
+      "summaries": {},
+      "histograms": {}
+    }
+  ]
+}
