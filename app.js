@@ -43,7 +43,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 const httpServer = http.createServer(app);
 const io = new Server(httpServer);
-httpServer.listen(config.port, () => { console.log(`Server listening on port ${config.port}`) })
+httpServer.listen(config.port || 8081 , () => { console.log(`Server listening on port ${config.port}`) })
 
 //Para toamr los comandos de consola. 
 //Setea el mpetodo de persistencia
