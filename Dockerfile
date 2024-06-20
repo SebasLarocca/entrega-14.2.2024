@@ -1,14 +1,23 @@
-FROM node:20.13.1
+FROM node:20.13.1-alpine
 
-WORKDIR /
+WORKDIR /app
 
 COPY package*.json ./
-COPY nodemon.json ./
 
+# Install dependencies inside the container
 RUN npm install
-RUN npn install -g nodemon
 
+# Copy the rest of the application code
 COPY . .
 
-ENTRYPOINT nodemon
+# Rebuild native modules (like bcrypt) inside the container
+# RUN npm rebuild bcrypt
 
+# Install nodemon globally
+RUN npm install -g nodemon
+
+# Expose the desired port
+EXPOSE 8081
+
+# Start the application
+ENTRYPOINT ["npm", "run", "dev", "mongo"]

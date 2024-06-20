@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { ProductsDAO } from "../daos/products.factory.js"
+import {ProductsDAO} from "../daos/products.factory.js"
 import UsersDAO from "../daos/mongo.dao/users.dao.js";
 import CartsDao from "../daos/mongo.dao/cart.dao.js"
 import upload from "../utils/upload.middleware.js";
