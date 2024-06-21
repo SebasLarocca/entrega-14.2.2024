@@ -24,13 +24,13 @@ router.get('/githubcallback', passport.authenticate('github', {failureRedirect:'
 }) 
 
 //Registro con passport local
-router.post('/register', passport.authenticate('register', {failureRedirect:'/failregister'}), async (req,res)=>{
+router.post('/register', passport.authenticate('register', {failureRedirect:'/api/sessions/failregister'}), async (req,res)=>{
     res.send({status: 'success', message:'User registered'})
 })
 
 router.get('/failregister', async (req, res)=>{
     console.log('Failed strategy');
-    res.send({error: 'failed'})
+    res.send({error: 'failed: user already exists'})
 })
 
 

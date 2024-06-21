@@ -14,7 +14,7 @@ const initializePassport =() => {
             try{
                 let user = await usersSchema.findOne({email:username});
                 if(user) {
-                    console.log('USer already exists');
+                    console.log('User already exists');
                     return done(null, false);
                 }
                 const newUser = {

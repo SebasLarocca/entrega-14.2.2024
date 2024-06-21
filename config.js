@@ -9,5 +9,7 @@ export default {
     cookieSecret: process.env.COOKIE_SECRET,
     githubPassportClientId: process.env.GITHUB_PASSPORT_CLIENTID,
     githubPassportClientSecret:process.env.GITHUB_PASSPORT_CLIENT_SECRET,
-    enviroment: process.env.ENVIROMENT
+    enviroment: process.env.ENVIROMENT,
+    gmailCode: process.env.GMAILCODE,
+    gmailUser: process.env.GMAILUSER
 }

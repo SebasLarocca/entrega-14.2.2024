@@ -1,4 +1,3 @@
-
 import http from "http";
 import express from "express";
 import { engine } from "express-handlebars";
@@ -23,6 +22,7 @@ import sessionsRouter from "./routes/sessions.route.js";
 import viewsRouter from "./routes/views.route.js";
 import ticketsRouter from "./routes/tickets.route.js";
 import mockingRouter from './routes/mocking.route.js'
+import passwordRecovery from './routes/passwordrecovery.js'
 
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
@@ -38,6 +38,8 @@ import {addProdLogger} from "./utils/logger/loggerProduction.js";
 
 //para probar stress test o prueba de carga
 import { operacionSencilla, operacionCompleja } from "./utils/stressTest.js";
+
+// console.log((moment().subtract(1, 'hours').calendar()));
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -105,6 +107,8 @@ app.use('/products',prodsRouter)
 app.get('/chat/', chatRouter)
 app.use('/tickets/', ticketsRouter)
 app.use('/mockingproducts/', mockingRouter);
+app.use('/passrecovery/', passwordRecovery);
+
 
 // app.get('/home', (req, res) => {
 //     res.render('home')

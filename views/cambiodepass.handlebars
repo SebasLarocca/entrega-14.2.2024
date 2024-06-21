@@ -1,0 +1,6 @@
+<form method="POST" action="/passrecovery/formnuevopass/{{userMail}}">
+    <p>ingresa tu nueva contraseña</p>
+    <input type="text" name="newPass" placeholder="new password"/>
+    <input type="hidden" name="email" value="{{userMail}}"/>
+    <input type="submit" value="Enviar mail"/>
+</form>
