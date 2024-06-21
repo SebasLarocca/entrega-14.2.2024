@@ -22,6 +22,6 @@ export const sendMail = async (mail) => {
         to: 'sebastian.larocca@gmail.com',
         subject: 'Ecommerce password recovery',
         //el link debe tener el dominio de producción cuando lo deploye
-        html: `<div><button><a href="http://localhost:8081/passrecovery/botonDesdeMail/${mail}/${sentDate}">Click para restaurar tu pass</a></button></div>`,
+        html: `<div><button><a href="https://entrega-1422024-production.up.railway.app/passrecovery/botonDesdeMail/${mail}/${sentDate}">Click para restaurar tu pass</a></button></div>`,
     })
 }
