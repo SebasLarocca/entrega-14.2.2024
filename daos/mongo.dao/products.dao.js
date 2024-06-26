@@ -6,8 +6,7 @@ class ProductsDAO {
         let parsedFilter = await JSON.parse(filter)
         let prods = await Products.paginate(parsedFilter, {page, limit, lean: true})
         console.log();
-        return Products.paginate(parsedFilter, {page, limit, lean: true});
-    }
+        return Products.paginate(parsedFilter, {page, limit, lean: true});    }
 
     static async getAllWithStock() {
         return Products.paginate({stock: {$gt:0}}, {page:1, limit:5, lean: true})

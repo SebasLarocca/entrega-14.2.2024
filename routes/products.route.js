@@ -9,7 +9,8 @@ import { getUserByID } from "../dtos/user.dto.js";
 
 const router = Router();
 
-router.get('/', authenticate,
+router.get('/', 
+    authenticate,
     authorization(["client", "admin"]),
     async (req, res) => {
         let user = req.user
@@ -85,7 +86,7 @@ router.get("/new", authenticate, authorization(["admin"]), (req, res) => {
 })
 
 router.get("/admin", authenticate, authorization(["admin"]), async (req, res) => {
-    let products = await ProductsDAO.getAll(1, 5, null);
+    let products = await ProductsDAO.getAll(1, 100, null);
     res.render("adminManagement", { products })
 })
 
@@ -109,7 +110,9 @@ router.get('/:id', authenticate, authorization(["client"]), async (req, res) => 
 
 })
 
-router.post('/', authenticate, authorization(["admin"]), upload.single('image'), async (req, res) => {
+router.post('/'
+    , authenticate, authorization(["admin"])
+    , upload.single('image'), async (req, res) => {
     let filename = req.file.filename;
     let product = req.body
     await ProductsDAO.add(product.title, product.description, filename, product.price, product.stock);

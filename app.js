@@ -70,8 +70,6 @@ app.use(compression({
 // Public folder
 app.use(express.static('public'))
 
-
-
 //Cookies y session
 app.use(cookieParser('sebaspass'));
 app.use(session({
