@@ -28,11 +28,11 @@ router.post('/register', passport.authenticate('register', {failureRedirect:'/ap
     res.send({status: 'success', message:'User registered'})
 })
 
+//falló el registro
 router.get('/failregister', async (req, res)=>{
     console.log('Failed strategy');
     res.send({error: 'failed: user already exists'})
 })
-
 
 //Login con passport local:
 router.post('/login', passport.authenticate('login', {failureRedirect: '/api/sessions/faillogin'}), async (req,res)=>{
@@ -47,25 +47,37 @@ router.post('/login', passport.authenticate('login', {failureRedirect: '/api/ses
     res.redirect('/products')
 })
 
+//Falló el login
 router.get('/faillogin', (req, res)=>{
     res.send({error: 'Failed login'})
 })
 
+//Borra usuarios
 router.get("/borrarusuarios", async (req, res) => {
     const usuarios = await UsersDAO.createAdmin()
     res.send(usuarios)
 })
 
+//Logout: destruye la session
 router.get("/logout", (req, res) => {
     req.session.destroy((err) => {
         res.redirect("/");
     })
 })
 
+//Crea un nuevo usuario
 router.post("/adminRegister", (req, res) => {
     const {first_name, last_name, age, email, role, password} = req.body;
     UsersDAO.insert(first_name, last_name, age, email, role, password);
     res.status(200).send('Usuario agregado correctamente')
 })
 
+
+//Modifica el rol de un usuario para convertirlo de "client" a "premium" y viceversa
+router.post('/changerole', async (req, res) => {
+    const email = req.body.email;
+    const newRole = req.body.role;
+    const changeRole = await UsersDAO.modifyField(email, {role: newRole})
+    res.status(200).send(changeRole)
+})
 export default router;
