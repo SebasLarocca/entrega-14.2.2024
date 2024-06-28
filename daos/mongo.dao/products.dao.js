@@ -1,12 +1,13 @@
 import Products from '../../schemas/products.schema.js';
 
+
 class ProductsDAO {
 
     static async getAll(page, limit, filter) {
-        let parsedFilter = await JSON.parse(filter)
-        let prods = await Products.paginate(parsedFilter, {page, limit, lean: true})
-        console.log();
-        return Products.paginate(parsedFilter, {page, limit, lean: true});    }
+        // let parsedFilter = await JSON.parse(filter)
+        let prods = await Products.paginate(filter, {page, limit, lean: true})
+        return prods;
+    }
 
     static async getAllWithStock() {
         return Products.paginate({stock: {$gt:0}}, {page:1, limit:5, lean: true})
@@ -21,11 +22,11 @@ class ProductsDAO {
     }
 
     static async getById(id) {
-        return Products.findOne({_id: id}).lean()
+        return Products.findOne({_id: id}).lean().populate('owner')
     }
 
-    static async add(title, description, photo, price, stock) {
-        return new Products({title, description, photo, price, stock}).save();
+    static async add(title, description, photo, price, stock, owner) {
+        return new Products({title, description, photo, price, stock, owner}).save();
     }
 
     static async update(id, data) {

@@ -23,6 +23,7 @@ const initializePassport =() => {
                     email,
                     age,
                     password: createHash(password)
+
                 }
                 let result = await usersSchema.create(newUser);
                 return done(null, result);

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {ProductsDAO} from "../daos/products.factory.js"
+import { ProductsDAO } from "../daos/products.factory.js"
 import UsersDAO from "../daos/mongo.dao/users.dao.js";
 import CartsDao from "../daos/mongo.dao/cart.dao.js"
 import upload from "../utils/upload.middleware.js";
@@ -9,9 +9,10 @@ import { getUserByID } from "../dtos/user.dto.js";
 
 const router = Router();
 
-router.get('/', 
+//Pantalla de inicio: muestra los productos, permite filtros.
+router.get('/',
     authenticate,
-    authorization(["client", "admin"]),
+    authorization(["client", "admin", "premium"]),
     async (req, res) => {
         let user = req.user
         const userData = await getUserByID(user)
@@ -54,7 +55,7 @@ router.get('/',
         } else {
             let page = parseInt(req.query.page)
             let limit = parseInt(req.query.limit)
-            let filter = req.params.filter
+            let filter = req.query.filter
             if (!filter) filter = null
             if (!limit) limit = 10
             if (!page) page = 1
@@ -76,21 +77,28 @@ router.get('/',
             nextLink: products.nextLink
         }
         let cartId = cart[0]._id.toString()
-        console.log(cartId);
-        // console.log(products);
         res.render('products', { products, userData, cartId })
     })
 
-router.get("/new", authenticate, authorization(["admin"]), (req, res) => {
+//Renderiza vista de agregar nuevo producto
+router.get("/new", authenticate, authorization(["admin", "premium"]), (req, res) => {
     res.render('new-product')
 })
 
-router.get("/admin", authenticate, authorization(["admin"]), async (req, res) => {
-    let products = await ProductsDAO.getAll(1, 100, null);
+//Vista para eliminar productos
+router.get("/admin", authenticate, authorization(["admin", "premium"]), async (req, res) => {
+    const user = req.user
+    // const filter = req.user.
+    let products;
+    (user.role === "admin") ?
+        products = await ProductsDAO.getAll(1, 100, null)
+        : products = await ProductsDAO.getAll(1, 100, { owner: user._id })
+
     res.render("adminManagement", { products })
 })
 
-router.get('/:id', authenticate, authorization(["client"]), async (req, res) => {
+//Muestra un producto individual
+router.get('/:id', authenticate, authorization(["client", "admin"]), async (req, res) => {
     let id = req.params.id;
     if (!id) {
         res.redirect('/products')
@@ -99,7 +107,7 @@ router.get('/:id', authenticate, authorization(["client"]), async (req, res) => 
     if (!product) {
         res.render('404')
     }
-
+    console.log(product.owner.first_name);
     res.render('product', {
         title: product.title,
         description: product.description,
@@ -107,32 +115,49 @@ router.get('/:id', authenticate, authorization(["client"]), async (req, res) => 
         price: product.price,
         isStock: product.stock > 0
     })
-
 })
 
-router.post('/'
-    , authenticate, authorization(["admin"])
-    , upload.single('image'), async (req, res) => {
-    let filename = req.file.filename;
-    let product = req.body
-    await ProductsDAO.add(product.title, product.description, filename, product.price, product.stock);
-    res.redirect('/products');
-})
+//Crean productos los usuarios admin y premium.
+router.post('/',
+    authenticate,
+    authorization(["admin", "premium"]),
+    upload.single('image'),
+    async (req, res) => {
+        let filename = req.file.filename;
+        let product = req.body
+        let user = req.user
+        const owner = req.session.user;
+        console.log({ owner: owner });
+        console.log({ user: user });
+        await ProductsDAO.add(product.title, product.description, filename, product.price, product.stock, owner);
+        res.redirect('/products');
+    })
 
-router.post('/update/:id', authenticate, authorization(["admin"]), async (req, res) => {
+//Modifica un producto existente. Si es premium chequea que sea el owner. 
+//Caso contrario es admin y lo permite
+//Chequear funcionamiento
+
+router.post('/update/:id', authenticate, authorization(["admin", "premium"]), async (req, res) => {
     let data = req.body
     let id = req.params.id
-    await ProductsDAO.update({ _id: id }, data);
-    res.status(200).redirect('/products');
+    const user = req.user
+
+    if (user.role === "premium") {
+        const product = await ProductsDAO.getById(id)
+        product.owner === user._id
+            ? await ProductsDAO.update({ _id: id }, data)
+            : res.status(403).redirect('/products');
+    } else {
+        await ProductsDAO.update({ _id: id }, data);
+        res.status(200).redirect('/products');
+    }
 })
 
 //Borrar un producto
-router.post('/:id', authenticate, authorization(["admin"]), async (req, res) => {
+router.post('/:id', authenticate, authorization(["admin", "premium"]), async (req, res) => {
     let productToDelete = req.params.id;
     await ProductsDAO.remove(productToDelete);
     res.status(201).redirect("/products")
 })
-
-
 
 export default router;

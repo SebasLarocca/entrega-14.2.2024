@@ -20,9 +20,14 @@ const productsSchema = new mongoose.Schema({
     },
     photo: {
         type: String
-    }
+    }, 
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'users'
+    },
 });
 
 productsSchema.plugin(mongoosePaginate);
 //acá define la colección (products) a la que apunta
 export default mongoose.model("products", productsSchema)   
+

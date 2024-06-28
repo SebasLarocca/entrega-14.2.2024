@@ -10,7 +10,7 @@ class UsersDAO {
         return await Users.findOne({email, password});
     }
 
-    static async insert(first_name, last_name, age, email, role="user", password ) {
+    static async insert(first_name, last_name, age, email, role="client", password ) {
         return await new Users({first_name, last_name, age, email, role, password }).save();
     }
 
