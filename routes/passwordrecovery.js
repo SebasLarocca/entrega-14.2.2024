@@ -8,9 +8,6 @@ import bcrypt from 'bcrypt'
 
 const router = Router()
 
-//Routers
-//sebita: pass de sebastian_larocca@hotmail.com
-
 router.get('/newpasswordform', (req,res)=>{
     res.render('newpasswordform')
 })
